@@ -1,0 +1,45 @@
+
+{% extends 'header.html.twig' %}
+
+{% block content %}
+    <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{ categorie.nomCategorie }}</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in products %}
+                    <tr>
+                        <td>{{ i.nom }}</td>
+                        <td>{{ i.prix}}</td>
+                        <td><a type="button" class="btn btn-primary" href="{{ path('updateCategorie',{'id':i.id}) }}">Modifier</a> </td>
+                        <td><a type="button" class="btn btn-danger" href="{{ path('deleteCategorie',{'id':i.id}) }}">delete</a> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    </div>
+
+{{ categorie.id }}
+
+
+{% endblock %}
+
+
+
+
+

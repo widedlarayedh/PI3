@@ -1,0 +1,18 @@
+ProduitBundle\Entity\Categorie:
+    type: entity
+    table: null
+    repositoryClass: ProduitBundle\Repository\CategorieRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomCategorie:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

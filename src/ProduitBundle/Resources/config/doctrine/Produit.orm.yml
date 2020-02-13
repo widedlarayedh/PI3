@@ -1,0 +1,29 @@
+ProduitBundle\Entity\Produit:
+    type: entity
+    table: null
+    repositoryClass: ProduitBundle\Repository\ProduitRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        image:
+            type: string
+            length: 255
+        quantite:
+            type: integer
+        prix:
+            type: float
+    manyToOne:
+        categorie:
+            targetEntity: Categorie
+            joinColumn:
+                name: categorie_id
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }

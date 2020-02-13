@@ -1,0 +1,14 @@
+ProduitBundle\Entity\Commande:
+    type: entity
+    table: null
+    repositoryClass: ProduitBundle\Repository\CommandeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateCommande:
+            type: datetime
+    lifecycleCallbacks: {  }

@@ -1,0 +1,46 @@
+produit_homepage:
+    path:     /
+    defaults: { _controller: ProduitBundle:Default:index }
+
+read:
+    path:     /read
+    defaults: { _controller: ProduitBundle:Produit:read }
+
+create:
+    path:     /create
+    defaults: { _controller: ProduitBundle:Produit:create }
+
+update:
+    path:     /update/{id}
+    defaults: { _controller: ProduitBundle:Produit:update }
+
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: ProduitBundle:Produit:delete }
+
+readCategorie:
+    path:     /readcategorie
+    defaults: { _controller: ProduitBundle:Categorie:read }
+
+
+readOneCategorie:
+    path:     /readcategorie/{id}
+    defaults: { _controller: ProduitBundle:Categorie:readOne }
+
+createCategorie:
+    path:     /createcategorie
+    defaults: { _controller: ProduitBundle:Categorie:create }
+
+updateCategorie:
+    path:     /updatecategorie/{id}
+    defaults: { _controller: ProduitBundle:Categorie:update }
+
+deleteCategorie:
+    path:     /deletecategorie/{id}
+    defaults: { _controller: ProduitBundle:Categorie:delete }
+
+
+
+
+
+

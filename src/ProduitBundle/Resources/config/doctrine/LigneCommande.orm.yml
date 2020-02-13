@@ -1,0 +1,14 @@
+ProduitBundle\Entity\LigneCommande:
+    type: entity
+    table: null
+    repositoryClass: ProduitBundle\Repository\LigneCommandeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        quantite:
+            type: integer
+    lifecycleCallbacks: {  }

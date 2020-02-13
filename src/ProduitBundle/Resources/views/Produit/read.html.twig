@@ -1,0 +1,51 @@
+{% extends 'header.html.twig' %}
+
+{% block content %}
+<!--table border="1">
+
+
+    <th>Id</th>
+    <th>nom</th>
+    <th>Description</th>
+    <th>quantite</th>
+    <th>prix</th>
+
+        <tr>
+            <td> { product.id } </td>
+            <td> { product.nom } </td>
+            <td> { product.quantite }} </td>
+            <td>  </td>
+
+            <td> <a href="{ path('update',{'id':product.id}) }"> modifier </a> </td>
+            <td> <a href="{ path('delete',{'id':product.id}) }"> supprimer </a> </td>
+
+        </tr>
+
+</table !-->
+<div class="row">
+    {% for product in products %}
+
+        <div class="card-deck col-4" style="margin-top: 15px">
+            <div class="card" >
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20190506164011/logo3.png" height="100" class="card-img-top" alt="i">
+                <div class="card-body" >
+                    <h5 class="card-title"> {{ product.nom }} </h5>
+                    <p class="card-text"><small class="text-muted"> Quantité: {{ product.quantite }} </small></p>
+                    <p class="card-text"><small class="text-muted"> Prix: {{ product.prix }} dt </small></p>
+                </div>
+
+                <div class="card-footer">
+                    <a class="btn btn-primary" href="{{ path('update',{'id':product.id}) }}"> Modifier </a>
+                    <a class="btn btn-danger" href="{{ path('delete',{'id':product.id}) }}" > Supprimer </a>
+
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}
