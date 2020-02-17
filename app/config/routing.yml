@@ -1,3 +1,7 @@
+test:
+    resource: "@TestBundle/Resources/config/routing.yml"
+    prefix:   /
+
 commande:
     resource: "@CommandeBundle/Resources/config/routing.yml"
     prefix:   /commande
