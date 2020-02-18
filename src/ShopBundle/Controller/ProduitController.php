@@ -2,7 +2,7 @@
 
 namespace ShopBundle\Controller;
 
-use ShopBundle\Entity\Produit;
+use ProduitBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ProduitController extends Controller

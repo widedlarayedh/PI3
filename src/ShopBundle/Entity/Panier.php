@@ -29,7 +29,7 @@ class Panier
     private $quantite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\ManyToOne(targetEntity="\ProduitBundle\Entity\Produit")
      * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
      */
     private $produit;
@@ -77,11 +77,11 @@ class Panier
     /**
      * Set produit
      *
-     * @param \ShopBundle\Entity\Produit $produit
+     * @param \ProduitBundle\Entity\Produit $produit
      *
      * @return Panier
      */
-    public function setProduit(\ShopBundle\Entity\Produit $produit = null)
+    public function setProduit(\ProduitBundle\Entity\Produit $produit = null)
     {
         $this->produit = $produit;
 
@@ -91,7 +91,7 @@ class Panier
     /**
      * Get produit
      *
-     * @return \ShopBundle\Entity\Produit
+     * @return \ProduitBundle\Entity\Produit
      */
     public function getProduit()
     {

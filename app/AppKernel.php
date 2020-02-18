@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new ShopBundle\ShopBundle(),
             new ShopAdminBundle\ShopAdminBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

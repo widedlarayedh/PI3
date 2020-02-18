@@ -84,4 +84,3 @@ class Categorie
         return $this->nomCategorie;
     }
 }
-

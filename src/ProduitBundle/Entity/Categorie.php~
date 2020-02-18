@@ -1,37 +1,24 @@
 <?php
 
-namespace ShopBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+namespace ProduitBundle\Entity;
 
 /**
  * Categorie
- *
- * @ORM\Table(name="categorie")
- * @ORM\Entity(repositoryClass="ShopBundle\Repository\CategorieRepository")
  */
 class Categorie
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nomCategorie", type="string", length=255)
      */
     private $nomCategorie;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
@@ -93,5 +80,7 @@ class Categorie
     {
         return $this->description;
     }
+    public function __toString(){
+        return $this->nomCategorie;
+    }
 }
-

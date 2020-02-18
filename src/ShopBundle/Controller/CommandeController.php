@@ -6,7 +6,7 @@ use ShopBundle\Entity\Client;
 use ShopBundle\Entity\Commande;
 use ShopBundle\Entity\Panier;
 use ShopBundle\Entity\PanierVendu;
-use ShopBundle\Entity\Produit;
+use ProduitBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CommandeController extends Controller

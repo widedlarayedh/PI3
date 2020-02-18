@@ -3,7 +3,6 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * PanierVendu
  *
@@ -29,7 +28,7 @@ class PanierVendu
     private $quantite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\ManyToOne(targetEntity="\ProduitBundle\Entity\Produit")
      * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
      */
     private $produit;
@@ -81,29 +80,8 @@ class PanierVendu
         return $this->quantite;
     }
 
-    /**
-     * Set produit
-     *
-     * @param \ShopBundle\Entity\Produit $produit
-     *
-     * @return PanierVendu
-     */
-    public function setProduit(\ShopBundle\Entity\Produit $produit = null)
-    {
-        $this->produit = $produit;
+   
 
-        return $this;
-    }
-
-    /**
-     * Get produit
-     *
-     * @return \ShopBundle\Entity\Produit
-     */
-    public function getProduit()
-    {
-        return $this->produit;
-    }
 
     /**
      * Set client
@@ -151,5 +129,29 @@ class PanierVendu
     public function getCommande()
     {
         return $this->commande;
+    }
+
+    /**
+     * Set produit
+     *
+     * @param \ProduitBundle\Entity\Produit $produit
+     *
+     * @return PanierVendu
+     */
+    public function setProduit(\ProduitBundle\Entity\Produit $produit = null)
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Get produit
+     *
+     * @return \ProduitBundle\Entity\Produit
+     */
+    public function getProduit()
+    {
+        return $this->produit;
     }
 }

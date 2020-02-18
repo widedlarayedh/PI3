@@ -1,3 +1,7 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 shop_admin:
     resource: "@ShopAdminBundle/Resources/config/routing.yml"
     prefix:   /shop_admin
@@ -8,7 +12,7 @@ shop:
 
 test:
     resource: "@TestBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /test
 
 commande:
     resource: "@CommandeBundle/Resources/config/routing.yml"
@@ -22,3 +26,6 @@ produit:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

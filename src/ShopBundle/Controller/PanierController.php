@@ -4,7 +4,7 @@ namespace ShopBundle\Controller;
 
 use ShopBundle\Entity\Client;
 use ShopBundle\Entity\Panier;
-use ShopBundle\Entity\Produit;
+use ProduitBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PanierController extends Controller
