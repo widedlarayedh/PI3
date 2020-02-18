@@ -5,6 +5,8 @@ imports:
     - { resource: "@ProduitBundle/Resources/config/services.yml" }
     - { resource: "@CommandeBundle/Resources/config/services.yml" }
     - { resource: "@TestBundle/Resources/config/services.yml" }
+    - { resource: "@ShopBundle/Resources/config/services.yml" }
+    - { resource: "@ShopAdminBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -72,3 +74,18 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:
+            no-outline: true
+            page-size: LETTER
+            # Recommended to set UTF-8 as default encoding :)
+            encoding: UTF-8
+
+    image:
+        enabled:    true
+        binary:     /usr/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
+        options:    []

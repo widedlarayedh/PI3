@@ -1,0 +1,35 @@
+shop_homepage:
+    path:     /
+    defaults: { _controller: ShopBundle:Default:index }
+
+readProduit:
+    path:     /readProduit
+    defaults: { _controller: ShopBundle:Produit:read }
+
+createPanier:
+    path:     /createPanier/{id}
+    defaults: { _controller: ShopBundle:Panier:create }
+
+readPanier:
+    path:     /readPanier/{id_client}
+    defaults: { _controller: ShopBundle:Panier:read }
+
+deletePanier:
+    path:     /deletePanier/{id}
+    defaults: { _controller: ShopBundle:Panier:delete }
+
+updatePanier:
+    path:     /updatePanier/{id}/{mod}
+    defaults: { _controller: ShopBundle:Panier:update }
+
+createCommande:
+    path:     /createCommande/{id_client}
+    defaults: { _controller: ShopBundle:Commande:create }
+
+readCommande:
+    path:     /readCommande/{id_client}
+    defaults: { _controller: ShopBundle:Commande:read }
+
+deleteCommande:
+    path:     /deleteCommande/{id}/{id_client}
+    defaults: { _controller: ShopBundle:Commande:delete }

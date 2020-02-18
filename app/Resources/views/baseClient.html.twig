@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+{% block stylesheets %}
+    <head>
+        <!-- Site meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Free Bootstrap 4 Ecommerce Template</title>
+        <!-- CSS -->
+        <link href="{{ asset("FrontEnd/css/style.css") }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/linearicons.css") }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/font-awesome.min.css") }}">
+        <link rel="stylesheet" href="{{ "FrontEnd/css/themify-icons.css" }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/bootstrap.css") }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/owl.carousel.css") }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/nice-select.css") }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/nouislider.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/ion.rangeSlider.css") }}" />
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/ion.rangeSlider.skinFlat.css") }}" />
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/magnific-popup.css") }}">
+        <link rel="stylesheet" href="{{ asset("FrontEnd/css/main.css") }}">
+    </head>
+{% endblock %}
+<body>
+{% block header %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ asset("index.html") }}">Simple Ecommerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ asset("category.html") }}">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('readProduit') }}">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('readPanier', {'id_client':22}) }}">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ asset("contact.html") }}">Contact</a>
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-secondary btn-number">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <a class="btn btn-success btn-sm ml-3" href="{{ path('readPanier', {'id_client':22}) }}">
+                        <i class="fa fa-shopping-cart"></i> Cart
+                        <span class="badge badge-light"></span>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">E-COMMERCE BOOTSTRAP THEME</h1>
+            <p class="lead text-muted mb-0">Simple theme for e-commerce buid with Bootstrap 4.0.0. Pages available : home, category, product, cart & contact</p>
+        </div>
+    </section>
+{% endblock %}
+{% block content %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+shop_admin_homepage:
+    path:     /
+    defaults: { _controller: ShopAdminBundle:Default:index }
+
+readAdmin:
+    path:     /readCommande
+    defaults: { _controller: ShopAdminBundle:Commande:read }
+
+deleteAdmin:
+    path:     /delete/{id}
+    defaults: { _controller: ShopAdminBundle:Commande:delete }
+
+traiterAdmin:
+    path:     /traiter/{id}
+    defaults: { _controller: ShopAdminBundle:Commande:traiter }
+
+imprimerFacture:
+    path:     /imprimerFacture/{id}
+    defaults: { _controller: ShopAdminBundle:Commande:imprimerFacture }

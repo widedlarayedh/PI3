@@ -1,3 +1,11 @@
+shop_admin:
+    resource: "@ShopAdminBundle/Resources/config/routing.yml"
+    prefix:   /shop_admin
+
+shop:
+    resource: "@ShopBundle/Resources/config/routing.yml"
+    prefix:   /shop_client
+
 test:
     resource: "@TestBundle/Resources/config/routing.yml"
     prefix:   /
