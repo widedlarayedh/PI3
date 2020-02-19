@@ -1,7 +1,11 @@
 {% extends 'baseAdmin.html.twig' %}
 {% block content %}
     <form method="post" action="/shop_admin/chercher">
-        nom client : <input type="text" name="nomClient"><br>
+        <select id="Client" name="Client">
+            {% for client in clients %}
+                <option value="{{ client.id }}">{{ client.nom }}</option>
+            {% endfor %}
+        </select>
         <input type="submit" value="chercher">
     </form>
     {% for client in clients %}
@@ -52,6 +56,13 @@
                 </td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
     {% endfor %}
+
+    {% for commande in commandes %}
+        {{ commande.id }}
+    {% endfor %}
+
+
 {% endblock %}

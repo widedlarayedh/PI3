@@ -17,3 +17,7 @@ traiterAdmin:
 imprimerFacture:
     path:     /imprimerFacture/{id}
     defaults: { _controller: ShopAdminBundle:Commande:imprimerFacture }
+
+chercherClient:
+    path:     /chercher
+    defaults: { _controller: ShopAdminBundle:Commande:chercher }

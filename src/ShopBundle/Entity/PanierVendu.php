@@ -29,7 +29,7 @@ class PanierVendu
 
     /**
      * @ORM\ManyToOne(targetEntity="\ProduitBundle\Entity\Produit")
-     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $produit;
 

@@ -5,6 +5,7 @@ namespace ShopAdminBundle\Controller;
 use ShopBundle\Entity\Client;
 use ShopBundle\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CommandeController extends Controller
@@ -58,6 +59,19 @@ class CommandeController extends Controller
                 'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
             )
         );
+    }
+
+    public function chercherAction(Request $request){
+        $input=$request->get('Client');
+        //var_dump($input);
+        $client=$this->getDoctrine()->getManager()->getRepository(Client::class)->find($input);
+        //var_dump($client);
+        $em=$this->getDoctrine();
+        $commande=$em->getRepository(Commande::class)->findCommande($client->getId());
+        dump($commande);die;
+        return $this->render('@ShopAdmin/Commande/read.html.twig', array(
+            'clients'=>$client,'commandes'=>$commande
+        ));
     }
 
 }
