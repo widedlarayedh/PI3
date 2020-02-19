@@ -19,7 +19,7 @@
                 <td>{{ i.etat }}</td>
                 <td>
                     {% if  i.etat == "en cours" %}
-                        <a href="{{ path('deleteCommande', {'id':i.id,'id_client':22}) }}" ><button class="btn btn-sm btn-danger">Annuler</button></a>
+                        <a href="{{ path('deleteCommande', {'id':i.id}) }}" ><button class="btn btn-sm btn-danger">Annuler</button></a>
                     {% endif %}
                 </td>
                 <td>

@@ -132,28 +132,4 @@ class PanierVendu
     {
         return $this->produit;
     }
-
-    /**
-     * Set client
-     *
-     * @param \UserBundle\Entity\User $client
-     *
-     * @return PanierVendu
-     */
-    public function setClient(\UserBundle\Entity\User $client = null)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \UserBundle\Entity\User
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
 }

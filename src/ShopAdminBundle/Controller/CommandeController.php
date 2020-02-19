@@ -7,12 +7,13 @@ use ShopBundle\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use UserBundle\Entity\User;
 
 class CommandeController extends Controller
 {
     public function readAction()
     {
-        $client = $this->getDoctrine()->getRepository(Client::class)->findAll();
+        $client = $this->getDoctrine()->getRepository(User::class)->findAll();
         $commande = $this->getDoctrine()->getRepository(Commande::class)->findAll();
         return $this->render('@ShopAdmin/Commande/read.html.twig', array(
             'clients'=>$client,'commandes'=>$commande

@@ -8,15 +8,16 @@ use ShopBundle\Entity\Panier;
 use ShopBundle\Entity\PanierVendu;
 use ProduitBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use UserBundle\Entity\User;
 
 class CommandeController extends Controller
 {
-    public function createAction($id_client)
+    public function createAction()
     {
         $em=$this->getDoctrine()->getManager();
 
         //recuperer les articles du panier de ce client
-        $paniers=$em->getRepository(Panier::class)->findPanier($id_client);
+        $paniers=$em->getRepository(Panier::class)->findPanier($this->getUser()->getId());
         $prixtotal=0;
         foreach($paniers as $row)
         {
@@ -27,9 +28,9 @@ class CommandeController extends Controller
             $em->flush($produit);
         }
 
-        $client=$em->getRepository(Client::class)->find($id_client);
+        //$client=$em->getRepository(User::class)->find($id_client);
         $commande= new Commande();
-        $commande->setClient($client);
+        $commande->setClient($this->getUser());
         $commande->setPrixtotal($prixtotal);
         $commande->setEtat('en cours');
 
@@ -45,7 +46,7 @@ class CommandeController extends Controller
         foreach ($paniers as $row)
         {
             var_dump($i);
-            $unpanierVendu->setClient($client);
+            $unpanierVendu->setClient($this->getUser());
             $unpanierVendu->setQuantite($row->getQuantite());
             $unpanierVendu->setProduit($row->getProduit());
             $unpanierVendu->setCommande($commande);
@@ -65,26 +66,26 @@ class CommandeController extends Controller
         }
 
 
-        return $this->redirectToRoute('readCommande',array("id_client"=>22));
+        return $this->redirectToRoute('readCommande',array("id_client"=>$this->getUser()->getId()));
     }
 
-    public function readAction($id_client)
+    public function readAction()
     {
         $em=$this->getDoctrine();
-        $liste=$em->getRepository(Commande::class)->findCommande($id_client);
+        $liste=$em->getRepository(Commande::class)->findCommande($this->getUser()->getId());
 
         return $this->render('@Shop/Commande/read.html.twig', array(
             "liste"=>$liste
         ));
     }
 
-    public function deleteAction($id,$id_client)
+    public function deleteAction($id)
     {
         $em=$this->getDoctrine()->getManager();
         $commande=$em->getRepository(Commande::class)->find($id);
         $em->remove($commande);
         $em->flush();
-        return $this->redirectToRoute('readCommande',array("id_client"=>22));
+        return $this->redirectToRoute('readCommande',array("id_client"=>$this->getUser()->getId()));
 
     }
 

@@ -45,7 +45,10 @@
                     <a class="col-sm-12  col-md-6">
                         <a href="{{ path('readProduit') }}"><button class="btn btn-sm btn-primary">Continue Shopping</button> </a>
                         <button class="btn btn-sm"></button>
-                        <a href="{{ path('createCommande',{'id_client':22}) }}"><button class="btn btn-sm btn-primary">Valider Commande</button> </a>
+
+                        {% if is_granted('ROLE_CLIENT') %}
+                            <a href="{{ path('createCommande') }}"><button class="btn btn-sm btn-primary">Valider Commande</button> </a>
+                        {% endif %}
 
                 </div>
             </div>

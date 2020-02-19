@@ -41,12 +41,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('readProduit') }}">Product</a>
                     </li>
+                    {% if is_granted('ROLE_CLIENT') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('readPanier', {'id_client':22}) }}">Cart</a>
+                        <a class="nav-link" href="{{ path('readPanier', {'id_client':app.user.id}) }}">Cart</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ asset("contact.html") }}">Contact</a>
+                        <a class="nav-link" href="{{ path('readCommande') }}">Mes Commandes</a>
                     </li>
+                    {% endif %}
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0">
@@ -58,10 +61,16 @@
                             </button>
                         </div>
                     </div>
-                    <a class="btn btn-success btn-sm ml-3" href="{{ path('readPanier', {'id_client':22}) }}">
+                    {% if is_granted('ROLE_CLIENT') %}
+                    <a class="btn btn-success btn-sm ml-3" href="{{ path('readPanier', {'id_client':app.user.id}) }}">
                         <i class="fa fa-shopping-cart"></i> Cart
                         <span class="badge badge-light"></span>
                     </a>
+                        <a class="btn btn-success btn-sm ml-3" href="{{ path('fos_user_security_logout') }}">
+                            <i class="fa fa-shopping-cart"></i> Logout
+                            <span class="badge badge-light"></span>
+                        </a>
+                    {% endif %}
                 </form>
             </div>
         </div>

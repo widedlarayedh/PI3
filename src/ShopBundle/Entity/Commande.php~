@@ -112,28 +112,4 @@ class Commande
     {
         return $this->etat;
     }
-
-    /**
-     * Set client
-     *
-     * @param \UserBundle\Entity\User $client
-     *
-     * @return Commande
-     */
-    public function setClient(\UserBundle\Entity\User $client = null)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \UserBundle\Entity\User
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
 }

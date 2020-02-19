@@ -3,13 +3,14 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- * PanierVendu
+ * Panier
  *
- * @ORM\Table(name="panier_vendu")
- * @ORM\Entity(repositoryClass="ShopBundle\Repository\PanierVenduRepository")
+ * @ORM\Table(name="panier")
+ * @ORM\Entity(repositoryClass="ShopBundle\Repository\PanierRepository")
  */
-class PanierVendu
+class Panier
 {
     /**
      * @var int
@@ -29,7 +30,7 @@ class PanierVendu
 
     /**
      * @ORM\ManyToOne(targetEntity="\ProduitBundle\Entity\Produit")
-     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
      */
     private $produit;
 
@@ -38,13 +39,6 @@ class PanierVendu
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Commande")
-     * @ORM\JoinColumn(name="commande_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $commande;
-
 
     /**
      * Get id
@@ -61,7 +55,7 @@ class PanierVendu
      *
      * @param integer $quantite
      *
-     * @return PanierVendu
+     * @return Panier
      */
     public function setQuantite($quantite)
     {
@@ -80,41 +74,12 @@ class PanierVendu
         return $this->quantite;
     }
 
-
-
-
-    
-
-    /**
-     * Set commande
-     *
-     * @param \ShopBundle\Entity\Commande $commande
-     *
-     * @return PanierVendu
-     */
-    public function setCommande(\ShopBundle\Entity\Commande $commande = null)
-    {
-        $this->commande = $commande;
-
-        return $this;
-    }
-
-    /**
-     * Get commande
-     *
-     * @return \ShopBundle\Entity\Commande
-     */
-    public function getCommande()
-    {
-        return $this->commande;
-    }
-
     /**
      * Set produit
      *
      * @param \ProduitBundle\Entity\Produit $produit
      *
-     * @return PanierVendu
+     * @return Panier
      */
     public function setProduit(\ProduitBundle\Entity\Produit $produit = null)
     {
@@ -133,27 +98,5 @@ class PanierVendu
         return $this->produit;
     }
 
-    /**
-     * Set client
-     *
-     * @param \UserBundle\Entity\User $client
-     *
-     * @return PanierVendu
-     */
-    public function setClient(\UserBundle\Entity\User $client = null)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \UserBundle\Entity\User
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
+ 
 }

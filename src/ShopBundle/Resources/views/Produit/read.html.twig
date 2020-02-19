@@ -21,8 +21,11 @@
                                 </div><img src="https://images-na.ssl-images-amazon.com/images/I/61UXPmnTC9L._SL1024_.jpg" alt="Generic placeholder image" width="80" class="ml-lg-5 order-1 order-lg-2">
                             </div> <!-- End -->
                             <div class="col">
+                                {% if is_granted('ROLE_CLIENT') %}
                                 <a href="{{ path('createPanier', {'id':i.id}) }}" class="btn btn-success">Add</a>
-                                <a href="{{ path('readPanier', {'id_client':22}) }}" class="btn btn-success ">Voir panier</a>
+
+                                    <a href="{{ path('readPanier', {'id_client':app.user.id}) }}" class="btn btn-success ">Voir panier</a>
+                                {% endif %}
                             </div>
                         </li>
                     {% endfor %}

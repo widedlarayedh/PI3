@@ -23,13 +23,13 @@ updatePanier:
     defaults: { _controller: ShopBundle:Panier:update }
 
 createCommande:
-    path:     /createCommande/{id_client}
+    path:     /createCommande
     defaults: { _controller: ShopBundle:Commande:create }
 
 readCommande:
-    path:     /readCommande/{id_client}
+    path:     /readCommande
     defaults: { _controller: ShopBundle:Commande:read }
 
 deleteCommande:
-    path:     /deleteCommande/{id}/{id_client}
+    path:     /deleteCommande/{id}
     defaults: { _controller: ShopBundle:Commande:delete }

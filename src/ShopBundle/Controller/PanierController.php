@@ -6,6 +6,7 @@ use ShopBundle\Entity\Client;
 use ShopBundle\Entity\Panier;
 use ProduitBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use UserBundle\Entity\User;
 
 class PanierController extends Controller
 {
@@ -19,7 +20,8 @@ class PanierController extends Controller
             $client = new Client();
 
             $produit=$em->getRepository(Produit::class)->find($id);
-            $client=$em->getRepository(Client::class)->find(22);
+            //dump($this->getUser()->getId());die;
+            $client=$em->getRepository(User::class)->find($this->getUser()->getId());
             $panier->setProduit($produit);
             $panier->setClient($client);
             $panier->setQuantite(1);
@@ -55,7 +57,7 @@ class PanierController extends Controller
         $panier=$em->getRepository(Panier::class)->find($id);
         $em->remove($panier);
         $em->flush();
-        return $this->redirectToRoute('readPanier',array("id_client"=>22));
+        return $this->redirectToRoute('readPanier',array("id_client"=>$this->getUser()->getId()));
     }
 
     public function updateAction($id,$mod)
@@ -79,7 +81,7 @@ class PanierController extends Controller
         }
 
         $em->flush();
-        return $this->redirectToRoute('readPanier',array("id_client"=>22));
+        return $this->redirectToRoute('readPanier',array("id_client"=>$this->getUser()->getId()));
     }
 
 }

@@ -35,7 +35,7 @@ class Panier
     private $produit;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
@@ -98,14 +98,16 @@ class Panier
         return $this->produit;
     }
 
+ 
+
     /**
      * Set client
      *
-     * @param \ShopBundle\Entity\Client $client
+     * @param \UserBundle\Entity\User $client
      *
      * @return Panier
      */
-    public function setClient(\ShopBundle\Entity\Client $client = null)
+    public function setClient(\UserBundle\Entity\User $client = null)
     {
         $this->client = $client;
 
@@ -115,7 +117,7 @@ class Panier
     /**
      * Get client
      *
-     * @return \ShopBundle\Entity\Client
+     * @return \UserBundle\Entity\User
      */
     public function getClient()
     {

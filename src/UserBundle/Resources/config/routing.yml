@@ -1,3 +1,8 @@
 user_homepage:
     path:     /
     defaults: { _controller: UserBundle:Default:index }
+
+redirect:
+    path:     /redirect
+    defaults: { _controller: UserBundle:Default:redirect }
+
