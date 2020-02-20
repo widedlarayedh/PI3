@@ -36,6 +36,12 @@ class Commande
      */
     private $client;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Addresse")
+     * @ORM\JoinColumn(name="addresse_id", referencedColumnName="id")
+     */
+    private $addresse;
+
 
 
 
@@ -111,5 +117,29 @@ class Commande
     public function getEtat()
     {
         return $this->etat;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \UserBundle\Entity\User $client
+     *
+     * @return Commande
+     */
+    public function setClient(\UserBundle\Entity\User $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

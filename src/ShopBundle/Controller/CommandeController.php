@@ -3,16 +3,20 @@
 namespace ShopBundle\Controller;
 
 use ShopBundle\Entity\Client;
+use ShopBundle\Entity\Addresse;
 use ShopBundle\Entity\Commande;
 use ShopBundle\Entity\Panier;
 use ShopBundle\Entity\PanierVendu;
 use ProduitBundle\Entity\Produit;
+use ShopBundle\Form\AddresseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
 
 class CommandeController extends Controller
 {
-    public function createAction()
+    public function createAction(Request $request,$idAddresse)
     {
         $em=$this->getDoctrine()->getManager();
 
@@ -33,7 +37,8 @@ class CommandeController extends Controller
         $commande->setClient($this->getUser());
         $commande->setPrixtotal($prixtotal);
         $commande->setEtat('en cours');
-
+        $adresse=$em->getRepository(Addresse::class )->find($idAddresse);
+        $commande->setAddresse($adresse);
         $em->persist($commande);
 
 
@@ -87,6 +92,19 @@ class CommandeController extends Controller
         $em->flush();
         return $this->redirectToRoute('readCommande',array("id_client"=>$this->getUser()->getId()));
 
+    }
+
+    public function createAdresseAction(Request $request){
+        $adresse=new Addresse();
+        $form=$this->createForm(AddresseType::class,$adresse);
+        $form=$form->handleRequest($request);
+        if($form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($adresse);
+            $em->flush();
+            return $this->redirectToRoute("createCommande",array("idAddresse"=>$adresse->getId()));
+        }
+        return $this->render("@Shop/Adresse/adresse.html.twig",array("form"=>$form->createView()));
     }
 
 }

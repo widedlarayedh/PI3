@@ -41,12 +41,12 @@ class CommandeController extends Controller
     public function imprimerFactureAction($id){
         $em=$this->getDoctrine()->getManager();
         $commande=$em->getRepository(Commande::class)->find($id);
-
+        $client=$em->getRepository(User::class)->find($commande->getClient());
         $snappy = $this->get('knp_snappy.pdf');
 
         $html = $this->renderView('@ShopAdmin/Commande/facture.html.twig', array(
             //..Send some data to your view if you need to //
-            'commande' => $commande
+            'commande' => $commande, 'client'=>$client
 
         ));
 
@@ -65,13 +65,13 @@ class CommandeController extends Controller
     public function chercherAction(Request $request){
         $input=$request->get('Client');
         //var_dump($input);
-        $client=$this->getDoctrine()->getManager()->getRepository(Client::class)->find($input);
-        //var_dump($client);
+        $client=$this->getDoctrine()->getManager()->getRepository(User::class)->find($input);
+        //dump($client);
         $em=$this->getDoctrine();
         $commande=$em->getRepository(Commande::class)->findCommande($client->getId());
-        dump($commande);die;
-        return $this->render('@ShopAdmin/Commande/read.html.twig', array(
-            'clients'=>$client,'commandes'=>$commande
+        //dump($commande);die;
+        return $this->render('@ShopAdmin/Commande/readRecherche.html.twig', array(
+            'unClient'=>$client,'uneCommande'=>$commande
         ));
     }
 

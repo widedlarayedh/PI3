@@ -36,6 +36,12 @@ class Commande
      */
     private $client;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Addresse")
+     * @ORM\JoinColumn(name="addresse_id", referencedColumnName="id")
+     */
+    private $addresse;
+
 
 
 
@@ -135,5 +141,29 @@ class Commande
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Set addresse
+     *
+     * @param \ShopBundle\Entity\Addresse $addresse
+     *
+     * @return Commande
+     */
+    public function setAddresse(\ShopBundle\Entity\Addresse $addresse = null)
+    {
+        $this->addresse = $addresse;
+
+        return $this;
+    }
+
+    /**
+     * Get addresse
+     *
+     * @return \ShopBundle\Entity\Addresse
+     */
+    public function getAddresse()
+    {
+        return $this->addresse;
     }
 }

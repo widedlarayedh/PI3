@@ -1,9 +1,13 @@
-******ali**********
-<table>
-    <tr>
-        <td>{{ commande.id }}</td>
-        <td>{{ commande.prixtotal }}</td>
-        <td>{{ commande.etat }}</td>
-        <td>{{ commande.client.nom }}</td>
-    </tr>
-</table>
+<html>
+    <head>
+        <title>Facture</title>
+    </head>
+    <body>
+        <center><h1>Facture</h1></center><br><br>
+        <div>
+            <h3>Nom du client : {{ client.nom }}</h3>
+            <h4>Num de commande : {{ commande.id }}</h4>
+            <h4>Prix totale : {{ commande.prixtotal }} DT</h4>
+        </div>
+    </body>
+</html>

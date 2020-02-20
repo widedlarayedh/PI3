@@ -1,0 +1,143 @@
+{% extends 'baseClient.html.twig' %}
+{% block content %}
+    {{ form_start(form,{"attr":{"id":"checkout"}}) }}
+    <div class="form-group">
+        <label for="">Num Tel:</label>
+        {{ form_widget(form.numTel) }}
+    </div>
+
+    <div class="form-group">
+        <label for="">Mail :</label>
+        {{ form_widget(form.mail) }}
+    </div>
+
+    <div class="form-group">
+        <label for="">Pays :</label>
+        {{ form_widget(form.pays) }}
+    </div>
+
+    <div class="form-group">
+        <label for="">Ville :</label>
+        {{ form_widget(form.ville) }}
+    </div>
+
+    <div class="form-group">
+        <label for="">Code postal :</label>
+        {{ form_widget(form.pinCode) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary"  > Valider </button>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $.validator.setDefaults({
+                errorClass: 'invalid-feedback',
+                highlight: function(element) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass('is-invalid');
+                },
+                errorPlacement: function(error, element) {
+                    if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
+                        element.after(error);
+                    } else if (element.prop('type') === 'radio') {
+                        element.parent().parent().after(error);
+                    }
+                }
+            });
+
+
+
+            $.validator.addMethod("specialChars", function(value, element) {
+                var regex = new RegExp("^[a-zA-Z0-9éèà]+$");
+                var key = value;
+
+                if (!regex.test(key)) {
+                    return false;
+                }
+                return true;
+            }, "Pas de caractères spéciaux");
+
+            $.validator.addMethod("phoneNumberControl", function(value, element) {
+                var regex = new RegExp("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$");
+                var key = value;
+
+                if (!regex.test(key)) {
+                    return false;
+                }
+                return true;
+            }, "écriver un numéro conforme svp");
+
+            $.validator.addMethod("pinCodeControl", function(value, element) {
+                var regex = new RegExp("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$");
+                var key = value;
+
+                if (!regex.test(key)) {
+                    return false;
+                }
+                return true;
+            }, "écriver un code postal  conforme svp");
+            var isOneFieldEmpty = false;
+            var submit = false;
+
+            $("#checkout").validate({
+                onkeyup: (element) => {
+                    $(element).valid();
+                },
+                rules: {
+                    'shopbundle_addresse[mail]': {
+                        required: true,
+                        email: true,
+                    },
+                    "shopbundle_addresse[numTel]": {
+                        required: true,
+                        phoneNumberControl:true
+                    },
+                    "cshopbundle_addresse[pinCode]": {
+                        required: true,
+                        pinCodeControl:true
+                    },
+                    "shopbundle_addresse[ville]":{
+                        required: true,
+                        specialChars:true
+
+                    }
+                },
+                messages: {
+                    'shopbundle_addresse[mail]': {
+                        required: 'ce champ est requis.',
+                        email: 'entrez une adresse mail valide',
+                    },
+                    'commandebundle_adresse[nom]': {
+                        required: 'ce champ est requis',
+                        nowhitespace: "pas d'espace svp",
+                    },
+                    'commandebundle_adresse[prenom]': {
+                        required: 'ce champ est requis',
+                        nowhitespace: "pas d'espace svp",
+                    },
+                    "shopbundle_addresse[numTel]": {
+                        required: "vous devez remplir"
+                    },
+                    "cshopbundle_addresse[pinCode]": {
+                        required: "vous devez remplir",
+
+                    },
+                    "shopbundle_addresse[ville]":{
+                        required: "vous devez remplir",
+
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            })
+        })
+    </script>
+{% endblock %}

@@ -1,23 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 {% block content %}
-    <form method="post" action="/shop_admin/chercher">
-        <select id="Client" name="Client">
-            {% for client in clients %}
-                <option value="{{ client.id }}">{{ client.nom }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="chercher">
-    </form>
-    {% if clients is not null %}
-    {% for client in clients %}
-        {%  set bool="false" %}
-        <center><h2>{{ client.nom }}</h2></center>
-    {% for commande in commandes %}
-        {% if commande.client.id==client.id  %}
-            {%  set bool="true" %}
-        {% endif %}
-    {%  endfor%}
-        {% if bool=="true"%}
+        <center><h3>{{ unClient.nom }}</h3></center>
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -27,14 +10,12 @@
                 <th scope="col">Etat</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-
-            {% for commande in commandes %}
+            {% for commande in uneCommande %}
                 <td>
-                {% if client.id == commande.client.id %}
+
                     <td>{{ commande.id }}</td>
                     <td>{{ commande.prixtotal }}</td>
                     <td>{{ commande.etat }}</td>
@@ -55,7 +36,7 @@
                         </a>
                     {% endif %}
                     </td>
-                {% endif %}
+
                 <td>
                     <a href="{{ path('imprimerFacture', {'id':commande.id}) }}">
                         <button class="btn btn-primary hidden-print">
@@ -66,14 +47,10 @@
                 </td>
                 </tr>
             {% endfor %}
-        {% else %}
-            <center><h4>aucun commande</h4></center>
-        {% endif %}
-
             </tbody>
         </table>
-    {% endfor %}
-    {% endif %}
+
+
 
 
 {% endblock %}
