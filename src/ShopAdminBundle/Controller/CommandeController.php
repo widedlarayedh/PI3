@@ -5,6 +5,7 @@ namespace ShopAdminBundle\Controller;
 use ShopBundle\Entity\Client;
 use ShopBundle\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use UserBundle\Entity\User;
@@ -73,6 +74,13 @@ class CommandeController extends Controller
         return $this->render('@ShopAdmin/Commande/readRecherche.html.twig', array(
             'unClient'=>$client,'uneCommande'=>$commande
         ));
+    }
+
+    public function filtreCommandeAction(Request $request){
+        $em=$this->getDoctrine();
+        $mot=$request->get("mot");
+        $tab=$em->getRepository(Commande::class)->rechercheDynamique($mot);
+        return new JsonResponse(array("commandes"=>$tab));
     }
 
 }

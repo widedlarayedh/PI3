@@ -18,4 +18,11 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    public function rechercheDynamique($mot){
+        $query=$this->getEntityManager()->createQuery("select c.id,c.prixtotal,u.username,c.etat from  
+ShopBundle\Entity\Commande c left join UserBundle\Entity\User u with c.client=u.id where c.id like :key or c.prixtotal
+ like :key or c.etat like :key or u.username like :key")->setParameter("key","%".$mot."%");
+        return $query->getResult();
+    }
+
 }

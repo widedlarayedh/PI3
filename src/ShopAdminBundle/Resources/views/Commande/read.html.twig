@@ -1,31 +1,20 @@
 {% extends 'baseAdmin.html.twig' %}
 {% block content %}
-    <form method="post" action="/shop_admin/chercher">
-        <select id="Client" name="Client">
-            {% for client in clients %}
-                <option value="{{ client.id }}">{{ client.nom }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="chercher">
-    </form>
-    {% if clients is not null %}
-    {% for client in clients %}
-        {%  set bool="false" %}
-        <center><h2>{{ client.nom }}</h2></center>
-    {% for commande in commandes %}
-        {% if commande.client.id==client.id  %}
-            {%  set bool="true" %}
-        {% endif %}
-    {%  endfor%}
-        {% if bool=="true"%}
+    
+
+        <input type="text" id="mot" name="mot">
+
+
+
         <table class="table">
             <thead class="thead-dark">
             <tr>
                 <th scope="col"></th>
                 <th scope="col"># Id Commande</th>
+                <th scope="col">Nom client</th>
                 <th scope="col">Prix Total</th>
                 <th scope="col">Etat</th>
-                <th scope="col"></th>
+                <th scope="col">Action</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -33,9 +22,10 @@
             <tbody>
 
             {% for commande in commandes %}
-                <td>
-                {% if client.id == commande.client.id %}
+                <tr>
+
                     <td>{{ commande.id }}</td>
+                    <td>{{ commande.client.nom }}</td>
                     <td>{{ commande.prixtotal }}</td>
                     <td>{{ commande.etat }}</td>
                     <td>
@@ -55,7 +45,7 @@
                         </a>
                     {% endif %}
                     </td>
-                {% endif %}
+
                 <td>
                     <a href="{{ path('imprimerFacture', {'id':commande.id}) }}">
                         <button class="btn btn-primary hidden-print">
@@ -66,14 +56,66 @@
                 </td>
                 </tr>
             {% endfor %}
-        {% else %}
-            <center><h4>aucun commande</h4></center>
-        {% endif %}
+
 
             </tbody>
         </table>
-    {% endfor %}
-    {% endif %}
 
 
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script>
+       $(function(){
+           $("#mot").keydown(function(){
+               $.ajax({
+                   type:"get",
+                   url:"{{ path('filtreCommande') }}",
+                   data:{
+                       mot:$(this).val()
+                   },
+                   success:function (response) {
+                       $("tbody").html("");
+                       let content="";
+                       response.commandes.forEach(element=>{
+                           content+='<tr>'+
+                                   '<td>'+element.id+'</td>'+
+                               '<td>'+element.username+'</td>'+
+                               '<td>'+element.prixtotal+'</td>'+
+                               '<td>'+element.etat+'</td>'+
+                           '<td>';
+                           if(element.etat="en cours") {
+                               content+='<a href='+Routing.generate("deleteAdmin",{id:element.id})+' class="btn btn-danger btn-circle">'+
+                                  ' <i class="fas fa-trash"></i>'+
+                                   '</a>'+
+                                   '</td>'+
+                                   '<td>'+
+                                   '<a href='+Routing.generate("traiterAdmin",{id:element.id})+' class="btn btn-success btn-icon-split">'+
+                                   '<span class="icon text-white-50">'+
+                                   '<i class="fas fa-check"></i>'+
+                                   '</span>'+
+                                   '<span class="text">Traiter</span>'+
+                                   '</a>';
+                           }
+                           content+=
+                           '<td>'+
+                               '<a href='+Routing.generate("imprimerFacture",{id:element.id})+'>'+
+                               '<button class="btn btn-primary hidden-print">'+
+                               '<span class="glyphicon glyphicon-print" aria-hidden="true"></span>Print'+
+                               '</button>'+
+                               '</a>'+
+                               '</td>'+
+                           '</tr>'
+
+                       })
+                       $("tbody").html(content);
+
+
+                   }
+               })
+           })
+       })
+    </script>
 {% endblock %}

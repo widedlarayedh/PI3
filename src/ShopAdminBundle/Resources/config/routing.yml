@@ -9,15 +9,25 @@ readAdmin:
 deleteAdmin:
     path:     /delete/{id}
     defaults: { _controller: ShopAdminBundle:Commande:delete }
+    options:
+        expose: true
 
 traiterAdmin:
     path:     /traiter/{id}
     defaults: { _controller: ShopAdminBundle:Commande:traiter }
+    options:
+        expose: true
 
 imprimerFacture:
     path:     /imprimerFacture/{id}
     defaults: { _controller: ShopAdminBundle:Commande:imprimerFacture }
+    options:
+        expose: true
 
 chercherClient:
     path:     /chercher
     defaults: { _controller: ShopAdminBundle:Commande:chercher }
+
+filtreCommande:
+    path:     /filtreCommande
+    defaults: { _controller: ShopAdminBundle:Commande:filtreCommande }
