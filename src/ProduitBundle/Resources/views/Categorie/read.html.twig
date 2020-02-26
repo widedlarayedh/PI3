@@ -5,12 +5,13 @@
 
 
 
-    <a type="button" class="btn btn-primary" href="{{ path('createCategorie') }}">Ajouter</a>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header py-3 d-flex justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Catégories</h6>
+        <a type="button" class="btn btn-primary" href="{{ path('createCategorie') }}"><i class="fas fa-plus"></i></a>
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -28,8 +29,8 @@
                     <tr>
                         <td>{{ i.nomCategorie }}</td>
                         <td>{{ i.description}}</td>
-                        <td><a type="button" class="btn btn-primary" href="{{ path('updateCategorie',{'id':i.id}) }}">Modifier</a> </td>
-                        <td><a type="button" class="btn btn-danger" href="{{ path('deleteCategorie',{'id':i.id}) }}">delete</a> </td>
+                        <td><a type="button" class="btn btn-primary" href="{{ path('updateCategorie',{'id':i.id}) }}"><i class="fas fa-edit"></i></a> </td>
+                        <td><a type="button" class="btn btn-danger" href="{{ path('deleteCategorie',{'id':i.id}) }}"><i class="fas fa-trash-alt"></i></a> </td>
                     </tr>
                 {% endfor %}
                 </tbody>

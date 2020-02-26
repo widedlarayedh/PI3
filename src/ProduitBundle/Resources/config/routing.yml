@@ -5,6 +5,9 @@ produit_homepage:
 read:
     path:     /read
     defaults: { _controller: ProduitBundle:Produit:read }
+readjson:
+    path:     /readjson
+    defaults: { _controller: ProduitBundle:Produit:readJson }
 
 create:
     path:     /create

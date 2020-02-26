@@ -4,41 +4,65 @@ namespace ProduitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 /**
  * Produit
+ * @Vich\Uploadable
+ * @ORM\Table(name="produit")
+ * @ORM\Entity(repositoryClass="ProduitBundle\Repository\ProduitRepository")
  */
 class Produit
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
+
+    /**
+     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
     /**
      * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
 
     /**
      * @var int
+     *
+     * @ORM\Column(name="quantite", type="integer")
      */
     private $quantite;
 
     /**
      * @var float
+     *
+     * @ORM\Column(name="prix", type="float")
      */
     private $prix;
-
     /**
-     * @ORM\ManyToOne(targetEntity="Categorie")
-     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $categorie;
+    private $updatedAt;
 
 
     /**
@@ -65,6 +89,23 @@ class Produit
         return $this;
     }
 
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
     /**
      * Get nom
      *
@@ -148,6 +189,14 @@ class Produit
     }
 
     /**
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     */
+    private $categorie;
+
+
+
+    /**
      * Set categorie
      *
      * @param \ProduitBundle\Entity\Categorie $categorie
@@ -178,4 +227,6 @@ class Produit
 
 
 
+
 }
+

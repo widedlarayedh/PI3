@@ -15,10 +15,15 @@ ProduitBundle\Entity\Produit:
         image:
             type: string
             length: 255
+            nullable: true
         quantite:
             type: integer
         prix:
             type: float
+        updatedAt:
+            name: update_at
+            type: datetime
+            nullable: true
     manyToOne:
         categorie:
             targetEntity: Categorie

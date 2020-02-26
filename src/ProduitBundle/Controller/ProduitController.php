@@ -5,19 +5,31 @@ namespace ProduitBundle\Controller;
 use ProduitBundle\Entity\Produit;
 use ProduitBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
 class ProduitController extends Controller
 {
 
-    public function readAction()
+    public function readJsonAction()
     {
         $em=$this->getDoctrine();
-        $tab=$em->getRepository(Produit::class)->findAll();
-        return $this->render('@Produit/Produit/read.html.twig', array(
-            'products'=>$tab
-        ));
+
+        if(isset($_GET['rech']) && $_GET['rech']!= ''){
+            $rech = $_GET['rech'];
+            return new JsonResponse($em->getRepository(Produit::class)->createQueryBuilder("p")
+                ->where('p.nom like :nom')->setParameter('nom', "%".$rech."%")->getQuery()->getArrayResult());
+        }else{
+            $tab=$em->getRepository(Produit::class)->createQueryBuilder('p')->getQuery()->getArrayResult();
+            return new JsonResponse($tab);
+
+        }
+
+    }
+
+    public function readAction(){
+        return $this->render('@Produit/Produit/read.html.twig');
     }
 
 
@@ -26,7 +38,7 @@ class ProduitController extends Controller
         $club=new Produit();
         $form=$this->createForm(ProduitType::class, $club);
         $form=$form->handleRequest($request);
-        if($form->isValid()){
+        if($form->isValid() && $form->isSubmitted()){
             $em=$this->getDoctrine()->getManager();
             $em->persist($club);
             $em->flush();
@@ -34,7 +46,7 @@ class ProduitController extends Controller
         }
 
         return $this->render('@Produit/Produit/create.html.twig', array(
-            'form'=>$form->createView()
+            'form'=>$form->createView(), 'action'=> 'Ajouter'
         ));
 
     }
@@ -42,7 +54,6 @@ class ProduitController extends Controller
 
     public function updateAction($id, Request $request)
     {
-
         $em=$this->getDoctrine()->getManager();
         $club=$em->getRepository(Produit::class)->find($id);
         $form=$this->createForm(ProduitType::class, $club);
@@ -53,7 +64,7 @@ class ProduitController extends Controller
         }
 
         return $this->render('@Produit/Produit/create.html.twig', array(
-            'form'=>$form->createView()
+            'form'=>$form->createView(), 'action'=> 'Modifier'
         ));
     }
 

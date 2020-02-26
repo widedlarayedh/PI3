@@ -42,7 +42,7 @@ class CategorieController extends Controller
         }
 
         return $this->render('@Produit/Categorie/create.html.twig', array(
-            'form'=>$form->createView()
+            'form'=>$form->createView(), 'action'=> 'Ajouter'
         ));
 
     }
@@ -61,7 +61,7 @@ class CategorieController extends Controller
         }
 
         return $this->render('@Produit/Categorie/create.html.twig', array(
-            'form'=>$form->createView()
+            'form'=>$form->createView(), 'action'=> 'Modifier'
         ));
     }
 
