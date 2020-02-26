@@ -1,0 +1,27 @@
+materiel_index:
+    path:     /
+    defaults: { _controller: "MaterielBundle:Materiel:index" }
+    methods:  GET
+
+materiel_show:
+    path:     /{id}/show
+    defaults: { _controller: "MaterielBundle:Materiel:show" }
+    methods:  GET
+
+materiel_new:
+    path:     /new
+    defaults: { _controller: "MaterielBundle:Materiel:new" }
+    methods:  [GET, POST]
+
+materiel_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MaterielBundle:Materiel:edit" }
+    methods:  [GET, POST]
+
+materiel_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MaterielBundle:Materiel:delete" }
+    methods:  DELETE
+ajax_search:
+    path:     /search
+    defaults: { _controller: MaterielBundle:Materiel:search }
