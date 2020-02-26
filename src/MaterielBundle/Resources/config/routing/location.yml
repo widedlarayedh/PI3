@@ -1,0 +1,24 @@
+location_index:
+    path:     /
+    defaults: { _controller: "MaterielBundle:locations:index" }
+    methods:  GET
+
+location_show:
+    path:     /{id}/show
+    defaults: { _controller: "MaterielBundle:locations:show" }
+    methods:  GET
+
+location_new:
+    path:     /new
+    defaults: { _controller: "MaterielBundle:locations:new" }
+    methods:  [GET, POST]
+
+location_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MaterielBundle:locations:edit" }
+    methods:  [GET, POST]
+
+location_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MaterielBundle:locations:delete" }
+    methods:  DELETE

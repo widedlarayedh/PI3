@@ -5,4 +5,23 @@ user_homepage:
 redirect:
     path:     /redirect
     defaults: { _controller: UserBundle:Default:redirect }
+read_user:
+    path:     /read
+    defaults: { _controller: UserBundle:Default:read }
+create_user:
+    path:     /create
+    defaults: { _controller: UserBundle:Default:create }
+update_user:
+    path:     /update/{id}
+    defaults: { _controller: UserBundle:Default:update }
+delete_user:
+    path:     /delete/{id}
+    defaults: { _controller: UserBundle:Default:delete }
+read_user_client:
+    path:     /read_client
+    defaults: { _controller: UserBundle:Default:readclient }
+bloquer:
+    path:     /bloquer/{id}
+    defaults: { _controller: UserBundle:Default:bloquage }
+
 

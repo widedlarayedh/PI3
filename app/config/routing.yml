@@ -1,6 +1,14 @@
+materiel:
+    resource: "@MaterielBundle/Resources/config/routing.yml"
+    prefix:   /materielle
+
+reclamation:
+    resource: "@ReclamationBundle/Resources/config/routing.yml"
+    prefix:   /reclamation
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 shop_admin:
     resource: "@ShopAdminBundle/Resources/config/routing.yml"

@@ -1,0 +1,173 @@
+{% extends 'header.html.twig' %}
+
+{% block content %}
+
+    <style>
+        .card-product .img-wrap {
+            border-radius: 3px 3px 0 0;
+            overflow: hidden;
+            position: relative;
+            height: 220px;
+            text-align: center;
+        }
+        .card-product .img-wrap img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+        .card-product .info-wrap {
+            overflow: hidden;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        .card-product .bottom-wrap {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .label-rating { margin-right:10px;
+            color: #333;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .card-product .price-old {
+            color: #999;
+        }
+    </style>
+    <h1>Materiels list</h1>
+
+    <h2>Search A Post !!</h2>
+
+    <div class="sidebar-search">
+
+        <div class="input-group custom-search-form">
+
+            <input type="text" id="search" class="form-control" placeholder="Search here">
+        </div>
+        <!-- /input-group -->
+    </div>
+    <ul class="nav" id="side-menu">
+        <li>
+            <a href="#"> Entities<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level" id="entitiesNav">
+            </ul>
+        </li>
+    </ul><br><br><br><br>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+    <table class="table">
+        <thead>
+
+
+        </thead>
+        <tbody>
+        <div class="row">
+            {% for materiel in materiels %}
+
+
+
+                <div class="col-md-4">
+                    <figure class="card card-product">
+                        <div class="img-wrap">
+                            <img src="{{asset('img/'~materiel.image)}}" width="100">
+                        </div>
+                        <figcaption class="info-wrap">
+                            <h4 class="title">{{ materiel.nom }}</h4>
+                            <p class="desc">{{ materiel.description }}</p>
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            <a href="{{ path('materiel_show', { 'id': materiel.id }) }}" class="btn btn-sm btn-primary float-right">show</a>
+                            <div class="price-wrap h5">
+
+                                <a href="{{ path('materiel_edit', { 'id': materiel.id }) }}"><del class="price-old"></del>edit</a>
+                            </div> <!-- price-wrap.// -->
+                        </div> <!-- bottom-wrap.// -->
+                    </figure>
+                </div> <!-- col // -->
+
+
+
+                <script type="text/javascript">
+                    jQuery(document).ready(function() {
+                        var searchRequest = null;
+                        $("#search").keyup(function() {
+                            var minlength = 1;
+                            var that = this;
+                            var value = $(this).val();
+                            var entitySelector = $("#entitiesNav").html('');
+                            if (value.length >= minlength ) {
+                                if (searchRequest != null)
+                                    searchRequest.abort();
+                                searchRequest = $.ajax({
+                                    type: "GET",
+                                    url: "{{ path('ajax_search') }}",
+                                    data: {
+                                        'q' : value
+                                    },
+                                    dataType: "text",
+                                    success: function(msg){
+                                        //we need to check if the value is the same
+                                        if (value===$(that).val()) {
+                                            var result = JSON.parse(msg);
+                                            $.each(result, function(key, arr) {
+                                                $.each(arr, function(id, value) {
+                                                    if (key === 'materiels') {
+                                                        if (id !== 'error') {
+                                                            console.log(value[1]);
+                                                            entitySelector.append('<li><b>'+value[1]+'</b><a href="'+id+'/show">'+
+                                                                '<img src="{{asset('img/'~materiel.image )}}"/></a></li>');
+
+                                                        } else {
+                                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+
+
+                <!--
+        <tr>
+            <td><a href="{{ path('materiel_show', { 'id': materiel.id }) }}">{{ materiel.id }}</a></td>
+            <td>{{ materiel.nom }}</td>
+            <td><img src="{{asset('img/'~materiel.image)}}" width="100"></td>
+            <td>{{ materiel.description }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('materiel_show', { 'id': materiel.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('materiel_edit', { 'id': materiel.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+
+        -->
+            {% endfor %}
+        </div>
+
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('materiel_new') }}">Create a new materiel</a>
+        </li>
+        <li>
+            <a href="{{ path('location_index') }}">show location list</a>
+        </li>
+    </ul>
+
+
+{% endblock %}
+

@@ -27,8 +27,7 @@
 
         <div class="card-deck col-4" style="margin-top: 15px">
             <div class="card" >
-                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20190506164011/logo3.png" height="100" class="card-img-top" alt="i">
-                <div class="card-body" >
+                <img src="{{ asset('images/') }}{{ product.image }}" style="width: 100px;height: 100px"><div class="card-body" >
                     <h5 class="card-title"> {{ product.nom }} </h5>
                     <p class="card-text"><small class="text-muted"> Quantité: {{ product.quantite }} </small></p>
                     <p class="card-text"><small class="text-muted"> Prix: {{ product.prix }} dt </small></p>
