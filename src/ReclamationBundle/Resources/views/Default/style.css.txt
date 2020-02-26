@@ -1,0 +1,5 @@
+.error-message{
+dispaly:inline;
+color:#ff5b5;
+display:none;
+}

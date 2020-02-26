@@ -1,0 +1,11 @@
+materiel_materiel:
+    resource: "@MaterielBundle/Resources/config/routing/materiel.yml"
+    prefix:   /materiel
+
+materiel_loacation:
+    resource: "@MaterielBundle/Resources/config/routing/location.yml"
+    prefix:   /location
+
+materiel_homepage:
+    path:     /
+    defaults: { _controller: MaterielBundle:Default:index }

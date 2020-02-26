@@ -3,6 +3,7 @@
 namespace ProduitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produit
@@ -19,10 +20,16 @@ class Produit
      */
     private $nom;
 
+
+
     /**
-     * @var string
+     * @ORM\Column(type="string",length=255,nullable=true)
      */
-    private $image;
+    public $image;
+    /**
+     * @Assert\File(maxSize="700K")
+     */
+    public $file;
 
     /**
      * @var int
@@ -73,30 +80,6 @@ class Produit
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Produit
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -173,9 +156,46 @@ class Produit
 
 
 
+    public function getWebPath(){
 
+        return null===$this->image ? null :$this->getUploadDir.'/'.$this->image;
+    }
+    protected function getUploadRootDir(){
 
+        return dirname(__FILE__) .'/../../../web/'.$this->getUploadDir();
+    }
+    protected function getUploadDir(){
 
+        return 'images';
+    }
+    public function uploadProfilePicture(){
+        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
+        $this->image=$this->file->getClientOriginalName();
+        $this->file=null;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Produit
+     */
+    public function setimage($image){
+        $this->image==$image;
+        return $this;
+
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getimage(){
+
+        return $this->image;
+    }
 
 
 }

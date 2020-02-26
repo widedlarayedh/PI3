@@ -1,0 +1,32 @@
+{% extends 'header.html.twig' %}
+{% block content %}
+
+    <h1>Ajouter une réponse à une réclamation</h1>
+    {{form_start(form)}}
+
+    <div class="form-group">
+
+        <div class="form-control">
+            {{ form_row(form.reponse) }}
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="form-control">
+            {{ form_row(form.dateReponse) }}
+
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -28,6 +28,7 @@ class ProduitController extends Controller
         $form=$form->handleRequest($request);
         if($form->isValid()){
             $em=$this->getDoctrine()->getManager();
+            $club->uploadProfilePicture();
             $em->persist($club);
             $em->flush();
             return $this->redirectToRoute('read');
@@ -48,6 +49,7 @@ class ProduitController extends Controller
         $form=$this->createForm(ProduitType::class, $club);
         $form=$form->handleRequest($request);
         if($form->isValid()){
+            $club->uploadProfilePicture();
             $em->flush();
             return $this->redirectToRoute('read');
         }

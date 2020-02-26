@@ -1,0 +1,41 @@
+reclamation_homepage:
+    path:     /r
+    defaults: { _controller: ReclamationBundle:Default:index }
+reclamation_read:
+    path:     /reclamation_read
+    defaults: { _controller: ReclamationBundle:Reclamation:read }
+
+reclamation_create:
+    path:     /reclamation_create
+    defaults: { _controller: ReclamationBundle:Reclamation:create }
+reclamation_search:
+    path:     /reclamation_search
+    defaults: { _controller: ReclamationBundle:Reclamation:search }
+
+reclamation_delete:
+    path:     /reclamation_delete/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:delete }
+
+reclamation_update:
+    path:     /reclamation_update/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:update }
+
+reponse_read:
+    path:     /reponse_read
+    defaults: { _controller: ReclamationBundle:Reponse:read }
+
+reponse_create:
+    path:     /reponse_create
+    defaults: { _controller: ReclamationBundle:Reponse:create }
+
+reponse_delete:
+    path:     /reponse_delete/{id}
+    defaults: { _controller: ReclamationBundle:Reponse:delete }
+
+reponse_update:
+    path:     /reponse_update/{id}
+    defaults: { _controller: ReclamationBundle:Reponse:update }
+
+reponse_search:
+    path:     /reponse_search
+    defaults: { _controller: ReclamationBundle:Reponse:search }

@@ -1,0 +1,52 @@
+{% extends 'header.html.twig' %}
+{% block content %}
+    <html>
+
+    </body>
+
+    <table class="table table-bordered dataTable" id="dataTable" width=="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width:100%;">
+
+        <thead class="thead-dark">
+
+        <tr>
+            <th scope="col">Nom_Client</th>
+            <th scope="col">Type_Réclamation</th>
+            <th scope="col">Etat_Réclamation</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+
+
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+        <tr>
+            {% if club.user != NULL %}
+                <th scope="col">{{ club.user.nom}}</th>
+            {% else %}
+                <th scope="col">Undefined</th>
+            {% endif %}
+            <th scope="col">{{ club.type }}</th>
+            <th scope="col">{{ club.etat }}</th>
+            <th scope="col">{{ club.description }}</th>
+            <th scope="col">{{ club.date|date  }}</th>
+
+
+
+
+            <th><a href="{{path('reclamation_delete',{'id':club.id})}}"class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a></th>
+            <th><a href="{{path('reclamation_update',{'id':club.id})}}" class="btn btn-warning btn-circle"><i class="fas fa-info-circle"></i></a></th>
+
+
+
+            <th scope="col"><td class="btn btn-outline-dark"><a href="{{path('reponse_create',{'id':club.id})}}">Ajouter réponse</a></td></th>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </html>
+{% endblock %}
+

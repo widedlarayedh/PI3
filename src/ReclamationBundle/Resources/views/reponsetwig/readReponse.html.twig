@@ -1,0 +1,35 @@
+{% extends 'header.html.twig' %}
+{% block content %}
+    <html>
+
+    </body>
+
+    <table class="table table-bordered dataTable" id="dataTable" width=="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width:100%;">
+
+        <thead class="thead-dark">
+
+        <tr>
+
+            <th scope="col">Réponse</th>
+            <th scope="col">Date_Réponse</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+        <tr>
+            <th scope="col">{{ reponse.reponse}}</th>
+            <th scope="col">{{ reponse.dateReponse|date  }}</th>
+
+
+
+            <th><a href="{{path('reponse_delete',{'id':reponse.id})}}"class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a></th>
+            <th><a href="{{path('reponse_update',{'id':reponse.id})}}" class="btn btn-warning btn-circle"><i class="fas fa-info-circle"></i></a>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </html>
+{% endblock %}
+

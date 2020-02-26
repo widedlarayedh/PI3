@@ -23,10 +23,12 @@ class AppKernel extends Kernel
             new ShopBundle\ShopBundle(),
             new ShopAdminBundle\ShopAdminBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-
+            new ReclamationBundle\ReclamationBundle(),
+            new MaterielBundle\MaterielBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

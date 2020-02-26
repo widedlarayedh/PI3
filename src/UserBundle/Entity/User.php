@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -28,12 +29,23 @@ class User extends  BaseUser
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
+
+
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
+    /**
+     * @ORM\Column(type="string",length=255,nullable=true)
+     */
+    public $nomImage;
+    /**
+     * @Assert\File(maxSize="700K")
+     */
+    public $file;
+
 
 
     public function __construct()
@@ -76,6 +88,7 @@ class User extends  BaseUser
         return $this->nom;
     }
 
+
     /**
      * Set prenom
      *
@@ -99,4 +112,46 @@ class User extends  BaseUser
     {
         return $this->prenom;
     }
+
+    public function getWebPath(){
+
+        return null===$this->nomImage ? null :$this->getUploadDir.'/'.$this->nomImage;
+    }
+    protected function getUploadRootDir(){
+
+        return dirname(__FILE__) .'/../../../web/'.$this->getUploadDir();
+    }
+    protected function getUploadDir(){
+
+        return 'images';
+    }
+    public function uploadProfilePicture(){
+        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
+        $this->nomImage=$this->file->getClientOriginalName();
+        $this->file=null;
+    }
+
+    /**
+     * Set nomImage
+     *
+     * @param string $nomImage
+     *
+     * @return User
+     */
+    public function setNomImage($nomImage){
+        $this->nomImage==$nomImage;
+        return $this;
+
+    }
+
+    /**
+     * Get nomImage
+     *
+     * @return string
+     */
+    public function getNomImage(){
+
+        return $this->nomImage;
+    }
+
 }

@@ -17,7 +17,7 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom', null, ['label'=> false, 'attr' => ['class'=> 'form-control form-control-user']])
-            ->add('image', null, ['label'=> false, 'attr' => ['class'=> 'form-control form-control-user']])
+            ->add('file')
             ->add('quantite', null, ['label'=> false, 'attr' => ['class'=> 'form-control form-control-user']])
             ->add('prix', null, ['label'=> false, 'attr' => ['class'=> 'form-control form-control-user']])
         ->add('categorie', EntityType::class, ['class'=> 'ProduitBundle:Categorie']);
